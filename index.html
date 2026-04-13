@@ -186,8 +186,7 @@
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 32px;
-    opacity: 0;
-    animation: fadeUp 1s ease 0.3s forwards;
+    animation: fadeUp 1s ease 0.3s both;
   }
 
   .hero-title {
@@ -198,8 +197,7 @@
     text-align: center;
     letter-spacing: 2px;
     color: var(--white);
-    opacity: 0;
-    animation: fadeUp 1.2s ease 0.5s forwards;
+    animation: fadeUp 1.2s ease 0.5s both;
   }
 
   .hero-title em {
@@ -893,9 +891,14 @@
 
   /* Intersection observer reveal */
   .reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .reveal.hidden {
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 0.9s ease, transform 0.9s ease;
   }
 
   .reveal.visible {
