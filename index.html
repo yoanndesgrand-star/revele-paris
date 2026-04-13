@@ -488,11 +488,11 @@
     align-items: start;
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: 640px) {
     .services-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  @media (min-width: 1000px) {
+  @media (min-width: 900px) {
     .services-grid { grid-template-columns: repeat(3, 1fr); }
   }
 
@@ -1087,7 +1087,7 @@
   </p>
   <div class="reveal reveal-delay-2" style="display:flex; flex-direction:column; align-items:center; gap:16px;">
     <a href="tel:+33687207855" class="btn-primary">Réserver ma séance gratuite</a>
-    <a href="mailto:contact@revele-paris.fr" class="btn-ghost">Nous écrire</a>
+    <a href="/cdn-cgi/l/email-protection#690a06071d080a1d291b0c1f0c050c4419081b001a470f1b" class="btn-ghost">Nous écrire</a>
   </div>
   <p class="cta-phone reveal reveal-delay-3">Première consultation offerte — sans engagement</p>
 </section>
@@ -1106,17 +1106,9 @@
   <div class="footer-copy">© 2025 Révèle — Paris & Île-de-France</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Intersection Observer for scroll reveals
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.12 });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
+      entry.target.classList.
