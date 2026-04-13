@@ -212,8 +212,7 @@
     width: 1px; height: 80px;
     background: linear-gradient(to bottom, transparent, var(--gold), transparent);
     margin: 40px auto;
-    opacity: 0;
-    animation: fadeIn 1s ease 1s forwards;
+    animation: fadeIn 1s ease 1s both;
   }
 
   .hero-sub {
@@ -224,14 +223,12 @@
     text-align: center;
     max-width: 400px;
     line-height: 2;
-    opacity: 0;
-    animation: fadeUp 1s ease 1.2s forwards;
+    animation: fadeUp 1s ease 1.2s both;
   }
 
   .hero-cta-wrap {
     margin-top: 48px;
-    opacity: 0;
-    animation: fadeUp 1s ease 1.5s forwards;
+    animation: fadeUp 1s ease 1.5s both;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -292,8 +289,7 @@
     bottom: 32px; left: 50%;
     transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center; gap: 8px;
-    opacity: 0;
-    animation: fadeIn 1s ease 2s forwards;
+    animation: fadeIn 1s ease 2s both;
     pointer-events: none;
   }
 
@@ -996,6 +992,8 @@
         <div class="service-name">Coaching Fitness</div>
         <p class="service-desc">Musculation, cardio, remise en forme. Programme personnalisé, matériel professionnel fourni.</p>
         <div class="service-price">Sur devis <span>— première consultation offerte</span></div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
         <div class="service-number">02</div>
         <svg class="service-icon" viewBox="0 0 36 36" fill="none">
           <circle cx="18" cy="18" r="17" stroke="#C9A84C" stroke-width="1"/>
@@ -1109,9 +1107,20 @@
   <div class="footer-copy">© 2025 Révèle — Paris & Île-de-France</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Intersection Observer for scroll reveals
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const reveals = document.querySelectorAll('.reveal');
+  setTimeout(() => {
+    reveals.forEach(el => el.classList.add('hidden'));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('hidden');
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.05 });
+    reveals.forEach(el => observer.observe(el));
+  }, 100);
+});
+</script>
