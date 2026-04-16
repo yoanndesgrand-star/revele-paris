@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nous contacter — RÉVÈLE</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet"/>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #080808;
+    color: #F5F0E8;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+  }
+
+  .container {
+    max-width: 560px;
+    width: 100%;
+  }
+
+  .logo-wrap {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .logo-wrap img {
+    height: 80px;
+    width: auto;
+  }
+
+  .gold-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    text-align: center;
+    background: linear-gradient(135deg, #C9A84C, #F0D080, #C9A84C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.4), transparent);
+    margin-bottom: 48px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  input, textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: #F5F0E8;
+    padding: 16px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.3s;
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: rgba(245,240,232,0.3);
+  }
+
+  input:focus, textarea:focus {
+    border-color: rgba(201,168,76,0.7);
+  }
+
+  textarea {
+    resize: none;
+    rows: 5;
+  }
+
+  .btn-submit {
+    background: linear-gradient(135deg, #C9A84C, #F0D080, #C9A84C);
+    color: #060606;
+    border: none;
+    padding: 18px 48px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    transition: opacity 0.3s;
+  }
+
+  .btn-submit:hover { opacity: 0.85; }
+
+  .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 32px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.5);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .back-link:hover { color: rgba(201,168,76,0.9); }
+
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 48px 0;
+  }
+
+  .success-msg h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    background: linear-gradient(135deg, #C9A84C, #F0D080, #C9A84C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+
+  .success-msg p {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: rgba(245,240,232,0.5);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="logo-wrap">
+    <img src="logo-revele.png" alt="Révèle"/>
+  </div>
+
+  <h1 class="gold-title">Nous écrire</h1>
+  <p class="subtitle">Nous vous répondons sous 24h</p>
+  <div class="divider"></div>
+
+  <!-- Formulaire Formspree — remplace YOUR_FORM_ID par ton ID Formspree -->
+  <form id="contact-form" action="https://formspree.io/f/mvzdkkdz" method="POST">
+    <div class="form-group">
+      <input type="text" name="nom" placeholder="Votre nom *" required/>
+      <input type="email" name="email" placeholder="Votre email *" required/>
+      <input type="tel" name="telephone" placeholder="Votre téléphone"/>
+      <textarea name="message" rows="5" placeholder="Votre message — objectifs, disponibilités, quartier..."></textarea>
+    </div>
+    <button type="submit" class="btn-submit">Envoyer ma demande</button>
+  </form>
+
+  <div class="success-msg" id="success-msg">
+    <h2>Message envoyé ✦</h2>
+    <p>Nous vous répondons dans les plus brefs délais.</p>
+  </div>
+
+  <a href="index.html" class="back-link">← Retour au site</a>
+
+</div>
+
+<script>
+const form = document.getElementById('contact-form');
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const data = new FormData(form);
+  const response = await fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  });
+  if (response.ok) {
+    form.style.display = 'none';
+    document.getElementById('success-msg').style.display = 'block';
+  } else {
+    alert('Une erreur est survenue. Merci de réessayer.');
+  }
+});
+</script>
+</body>
+</html>
